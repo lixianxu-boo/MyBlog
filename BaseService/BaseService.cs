@@ -10,12 +10,12 @@ namespace BaseService
 {
     public class BaseService<TEntity> : IBaseService<TEntity> where TEntity : class, new()
     {
-        private readonly IBaseRepository<TEntity> _iBaseRepository;
+        protected IBaseRepository<TEntity> _iBaseRepository;
 
-        public BaseService(IBaseRepository<TEntity> iBaseRepository)
-        {
-            _iBaseRepository = iBaseRepository;
-        }
+        //public BaseService(IBaseRepository<TEntity> iBaseRepository)
+        //{
+        //    _iBaseRepository = iBaseRepository;
+        //}
         public async Task<bool> CreatAsync(TEntity entity)
         {
             return await _iBaseRepository.CreatAsync(entity);

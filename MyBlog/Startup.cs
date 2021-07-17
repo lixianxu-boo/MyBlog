@@ -11,6 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MyBlog.BaseService;
+using MyBlog.IBaseService;
+using MyBlog.IRepository;
+using MyBlog.Repository;
 
 namespace MyBlog
 {
@@ -37,7 +41,8 @@ namespace MyBlog
                 ConnectionString = Configuration["SqlConn"],
                 DbType = SqlSugar.IOC.IocDbType.SqlServer,
                 IsAutoCloseConnection = true//×Ô¶¯ÊÍ·Å
-            }); 
+            });
+            services.AddCustomIOC();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +65,22 @@ namespace MyBlog
             {
                 endpoints.MapControllers();
             });
+        }
+    }
+
+    static class IocExtend
+    {
+        public static IServiceCollection AddCustomIOC(this IServiceCollection services)
+        {
+            services.AddScoped<IBlogNewsRepository, BlogNewsRepository>();
+            services.AddScoped<ITypeInfoRepository, TypeInfoRepository>();
+            services.AddScoped<IWriterInfoRepository, WriterInfoRepository>();
+
+            services.AddScoped<IBlogNewsService, BlogNewsService>();
+            services.AddScoped<ITypeInfoService, TypeInfoService>();
+            services.AddScoped<IWriterInfoService, WriterInfoService>();
+
+            return services;
         }
     }
 }

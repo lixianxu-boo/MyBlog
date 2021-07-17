@@ -15,9 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlog.IRepository", "MyBlo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlog.Repository", "MyBlog.Repository\MyBlog.Repository.csproj", "{1286CF7C-7DA3-4933-B330-C67D57A62B0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlog.IService", "MyBlog.IService\MyBlog.IService.csproj", "{D9333E81-0012-4FD9-AB04-C62B7EC7422D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlog.IBaseService", "MyBlog.IService\MyBlog.IBaseService.csproj", "{D9333E81-0012-4FD9-AB04-C62B7EC7422D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseService", "BaseService\BaseService.csproj", "{CC26759A-F2F6-46EA-B988-447D76D7918D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlog.BaseService", "BaseService\MyBlog.BaseService.csproj", "{CC26759A-F2F6-46EA-B988-447D76D7918D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
