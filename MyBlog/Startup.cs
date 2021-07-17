@@ -32,6 +32,12 @@ namespace MyBlog
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyBlog", Version = "v1" });
             });
+            services.AddSqlSugar(new SqlSugar.IOC.IocConfig()
+            {
+                ConnectionString = Configuration["SqlConn"],
+                DbType = SqlSugar.IOC.IocDbType.SqlServer,
+                IsAutoCloseConnection = true//×Ô¶¯ÊÍ·Å
+            }); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
