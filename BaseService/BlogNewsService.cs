@@ -13,7 +13,6 @@ namespace MyBlog.BaseService
     public class BlogNewsService:BaseService<BlogNews>,IBlogNewsService
     {
         private readonly IBlogNewsRepository _iBlogNewsRepository;
-
         public BlogNewsService(IBlogNewsRepository iBlogNewsRepository)
         {
             base._iBaseRepository = iBlogNewsRepository;

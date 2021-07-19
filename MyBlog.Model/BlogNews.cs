@@ -18,6 +18,7 @@ namespace MyBlog.Model
         public int TypeId { get; set; }
         public int BrowseCount { get; set; }
         public int LikeCount { get; set; }
+        public int WriterId { get; set; }
         [SugarColumn(IsIgnore =true)]
         public TypeInfo TypeInfo { get; set; }
         [SugarColumn(IsIgnore = true)]
