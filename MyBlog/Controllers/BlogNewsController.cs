@@ -63,6 +63,7 @@ namespace MyBlog.WebApi.Controllers
             var result = await _iBlogNewsService.EditAsync(model);
             if (result) return ApiResultHelper.Success(result);
             return ApiResultHelper.Error();
+
         }
     }
 }
