@@ -14,6 +14,7 @@ namespace MyBlog.IRepository
         Task<bool> DeleteAsync(TEntity entity);
         Task<bool> EditAsync(TEntity entity);
         Task<TEntity> FindAsync(int id);
+        Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> func);
         Task<List<TEntity>> QueryAsync();
         Task<List<TEntity>> QueryAsync(Expression<Func<TEntity,bool>> func);
         Task<List<TEntity>> QueryAsync(int page, int size, RefAsync<int> total);

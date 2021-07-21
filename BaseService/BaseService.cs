@@ -36,6 +36,11 @@ namespace BaseService
             return await _iBaseRepository.FindAsync(id);
         }
 
+        public async Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> func)
+        {
+            return await _iBaseRepository.FindAsync(func);
+        }
+
         public async Task<List<TEntity>> QueryAsync()
         {
             return await _iBaseRepository.QueryAsync();
