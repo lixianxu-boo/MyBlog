@@ -10,9 +10,7 @@ using System.Threading.Tasks;
 
 namespace MyBlog.WebApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class TypeInfoController : ControllerBase
+    public class TypeInfoController : ApiControllerBase
     {
         private readonly ITypeInfoService _iTypeInfoService;
 

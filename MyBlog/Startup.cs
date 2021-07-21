@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,11 +12,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MyBlog.BaseService;
 using MyBlog.IBaseService;
 using MyBlog.IRepository;
 using MyBlog.Repository;
+using MyBlog.WebApi.Model;
 
 namespace MyBlog
 {
@@ -32,6 +36,26 @@ namespace MyBlog
         {
 
             services.AddControllers();
+            services.Configure<TokenManagement>(Configuration.GetSection("JwtTokenConfig"));
+            var token = Configuration.GetSection("JwtTokenConfig").Get<TokenManagement>();
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey=true,
+                    IssuerSigningKey=new SymmetricSecurityKey(Encoding.ASCII.GetBytes(token.Secret)),
+                    ValidIssuer=token.Issuer,
+                    ValidAudience=token.Audience,
+                    ValidateIssuer=false,
+                    ValidateAudience=false
+                };
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyBlog", Version = "v1" });
@@ -79,6 +103,7 @@ namespace MyBlog
             services.AddScoped<IBlogNewsService, BlogNewsService>();
             services.AddScoped<ITypeInfoService, TypeInfoService>();
             services.AddScoped<IWriterInfoService, WriterInfoService>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
 
             return services;
         }

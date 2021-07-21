@@ -11,9 +11,7 @@ using System.Threading.Tasks;
 
 namespace MyBlog.WebApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class WriterInfoController : ControllerBase
+    public class WriterInfoController : ApiControllerBase
     {
         private readonly IWriterInfoService _iWriterInfoService;
 

@@ -9,5 +9,6 @@ namespace MyBlog.IBaseService
 {
     public interface IWriterInfoService:IBaseService<WriterInfo>
     {
+        Tuple<bool, string, WriterInfo> CheckLogin(string account, string pwd);
     }
 }

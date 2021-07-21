@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyBlog.IBaseService;
 using MyBlog.Model;
@@ -21,6 +22,7 @@ namespace MyBlog.WebApi.Controllers
             _iBlogNewsService = iBlogNewsService;
         }
         [HttpGet("BlogNews")]
+        [Authorize]
         public async Task<ApiResult> GetBolgNews()
         {
             var data = await _iBlogNewsService.QueryAsync();
