@@ -11,9 +11,7 @@ using System.Threading.Tasks;
 
 namespace MyBlog.WebApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class BlogNewsController : ControllerBase
+    public class BlogNewsController : ApiControllerBase
     {
         private readonly IBlogNewsService _iBlogNewsService;
 
@@ -22,7 +20,6 @@ namespace MyBlog.WebApi.Controllers
             _iBlogNewsService = iBlogNewsService;
         }
         [HttpGet("BlogNews")]
-        [Authorize]
         public async Task<ApiResult> GetBolgNews()
         {
             var data = await _iBlogNewsService.QueryAsync();
